@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elnaz Babakhani · Product Manager</title>
+<meta name="description" content="Elnaz Babakhani, Technical Product Manager and AI SaaS builder in Vancouver. Projects, case studies, resume and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#D9E3EE; --wall-dot:#B9C8D8;
+  --win:#FFFFFF; --win-bar:#EEF2F7; --line:#C9D4E1; --tint:#F5F7FB;
+  --ink:#16202E; --ink-soft:#4A5870;
+  --cobalt:#2B46C4; --cobalt-soft:#E3E8FB;
+  --sun:#F3BE3E; --sun-ink:#3A2A00;
+  --menubar:rgba(255,255,255,.72); --dock:rgba(255,255,255,.62);
+  --shadow:0 1px 0 rgba(22,32,46,.06), 0 18px 40px -12px rgba(22,46,90,.28);
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --wall:#121826; --wall-dot:#232C3F;
+    --win:#1B2232; --win-bar:#232B3D; --line:#34405A; --tint:#20283A;
+    --ink:#E9EEF6; --ink-soft:#A3AFC4;
+    --cobalt:#8EA2FF; --cobalt-soft:#26305A;
+    --menubar:rgba(20,26,40,.75); --dock:rgba(28,35,52,.7);
+    --shadow:0 18px 44px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --wall:#121826; --wall-dot:#232C3F;
+  --win:#1B2232; --win-bar:#232B3D; --line:#34405A; --tint:#20283A;
+  --ink:#E9EEF6; --ink-soft:#A3AFC4;
+  --cobalt:#8EA2FF; --cobalt-soft:#26305A;
+  --menubar:rgba(20,26,40,.75); --dock:rgba(28,35,52,.7);
+  --shadow:0 18px 44px -12px rgba(0,0,0,.6);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  height:100%;margin:0;overflow:hidden;
+  font:16px/1.55 var(--body);color:var(--ink);
+  background:var(--wall);
+  background-image:radial-gradient(var(--wall-dot) 1.2px, transparent 1.3px);
+  background-size:22px 22px;
+}
+button{font:inherit;color:inherit}
+a{color:var(--cobalt)}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+
+/* Menu bar */
+.menubar{position:fixed;top:0;left:0;right:0;z-index:5000;padding-top:env(safe-area-inset-top,0px);background:var(--menubar);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.menubar-inner{display:flex;align-items:center;gap:4px;height:40px;padding:0 14px}
+.logo{display:flex;align-items:center;gap:8px;font:700 15px var(--display);margin-right:10px;background:none;border:0;cursor:pointer;padding:4px 6px;border-radius:6px}
+.logo-mark{width:22px;height:22px;border-radius:6px;background:var(--cobalt);color:#fff;display:grid;place-items:center;font:800 11px var(--display)}
+.menu-btn{background:none;border:0;padding:5px 9px;border-radius:6px;font-size:14px;cursor:pointer}
+.menu-btn:hover{background:var(--cobalt-soft)}
+.menubar .spacer{flex:1}
+.clock{font:500 13px var(--mono);color:var(--ink-soft);padding:0 6px}
+.icon-btn{background:none;border:0;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;cursor:pointer}
+.icon-btn:hover{background:var(--cobalt-soft)}
+.icon-btn svg{width:18px;height:18px}
+
+/* Desktop */
+#desktop{position:fixed;left:0;right:0;top:calc(41px + env(safe-area-inset-top,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.icons{position:absolute;top:18px;display:flex;flex-direction:column;gap:8px}
+.icons.left{left:14px}.icons.right{right:14px}
+.d-icon{width:96px;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:8px 4px;border-radius:10px;cursor:pointer;font-size:13px;line-height:1.25;text-align:center}
+.d-icon:hover,.d-icon:focus-visible{background:color-mix(in srgb,var(--cobalt-soft) 70%,transparent)}
+.d-icon svg{width:46px;height:46px;filter:drop-shadow(0 4px 6px rgba(22,46,90,.18))}
+
+/* Windows */
+.win{position:absolute;display:flex;flex-direction:column;background:var(--win);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;animation:pop .18s ease-out}
+.win.minimized{display:none}
+.win.maxed{left:8px!important;top:8px!important;width:calc(100% - 16px)!important;height:calc(100% - 16px)!important;max-height:none!important}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:none;opacity:1}}
+.win-bar{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;flex:none;background:var(--win-bar);border-bottom:1px solid var(--line);cursor:grab;user-select:none;touch-action:none}
+.win-bar:active{cursor:grabbing}
+.lights{display:flex;gap:7px}
+.light{width:13px;height:13px;border-radius:50%;border:0;padding:0;cursor:pointer}
+.light.close{background:#EE5F57}.light.min{background:#F4BD4F}.light.max{background:#5FC454}
+.win-title{font:500 13px var(--mono);color:var(--ink-soft);flex:1;text-align:center;margin-right:52px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win-body{overflow-y:auto;overflow-x:hidden;padding:28px 32px 32px;flex:1;min-height:0}
+
+/* Type */
+h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0}
+h1{font-size:clamp(34px,5vw,50px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+h3{font-size:17px;font-weight:700}
+p{margin:0 0 12px;max-width:64ch}
+.muted{color:var(--ink-soft)}
+
+/* Home */
+.hello{font:500 18px var(--display);color:var(--ink-soft);margin-bottom:4px}
+.intro{font-size:18px;line-height:1.7;margin-top:18px}
+.intro + .intro{margin-top:0}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px}
+.chip{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:500}
+.chip.sun{background:var(--sun);color:var(--sun-ink)}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:var(--win);color:var(--ink);white-space:nowrap}
+.btn.primary{background:var(--sun);border-color:var(--sun);color:var(--sun-ink);box-shadow:0 3px 0 #C89418}
+.btn.primary:active{transform:translateY(2px);box-shadow:0 1px 0 #C89418}
+.btn svg{width:16px;height:16px}
+
+/* Folder list */
+.folder-head p{margin:0}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:20px}
+.file{text-align:left;background:var(--win);border:1px solid var(--line);border-radius:12px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:border-color .15s, transform .15s}
+.file:hover{border-color:var(--cobalt);transform:translateY(-2px)}
+.file .ext{font:500 12px var(--mono);color:var(--ink-soft)}
+.file p{font-size:14px;color:var(--ink-soft);margin:0}
+.file .open-hint{margin-top:auto;padding-top:6px;font-size:13px;font-weight:600;color:var(--cobalt)}
+.empty{margin-top:22px;padding:34px 24px;border:1.5px dashed var(--line);border-radius:12px;text-align:center;background:var(--tint)}
+.empty p{margin:6px auto 0}
+
+/* Detail view inside a folder */
+.crumbs{display:flex;align-items:center;gap:6px;margin:-8px 0 18px;font-size:14px}
+.back{display:inline-flex;align-items:center;gap:4px;background:none;border:0;padding:6px 8px 6px 4px;border-radius:8px;cursor:pointer;color:var(--cobalt);font-weight:600}
+.back:hover{background:var(--cobalt-soft)}
+.back svg{width:16px;height:16px}
+.crumbs .sep{color:var(--ink-soft)}
+.hero{padding:22px;border-radius:12px;background:var(--tint);border:1px solid var(--line)}
+.hero-top{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start}
+.hero-top > div{flex:1 1 260px;min-width:0}
+.hero p{margin:4px 0 0;font-size:17px}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.story{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:16px}
+.story section{padding:18px 20px;border:1px solid var(--line);border-radius:12px}
+.story h3{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.story h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun);flex:none}
+.story p{margin:0;font-size:15.5px;line-height:1.65}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.pager .btn{font-weight:500}
+
+/* Certificates */
+.cert{cursor:default}
+.cert:hover{transform:none;border-color:var(--line)}
+.cert svg{width:40px;height:40px}
+.cert a{font-size:13px;font-weight:600;text-decoration:none;margin-top:auto}
+
+/* Resume */
+.resume-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:24px}
+.section{margin-top:26px}
+.section > h3{margin-bottom:12px}
+.timeline{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 18px 6px}
+.timeline li::before{content:"";position:absolute;left:-26px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--win);border:2.5px solid var(--cobalt)}
+.timeline li:first-child::before{background:var(--sun);border-color:var(--sun)}
+.role{font-weight:600}
+.when{font:400 13px var(--mono);color:var(--ink-soft)}
+.skills{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Why */
+.results{list-style:none;margin:16px 0 0;padding:0}
+.results li{display:grid;grid-template-columns:80px 1fr;align-items:baseline;gap:14px;padding:9px 0;border-top:1px dashed var(--line)}
+.results li:first-child{border-top:0}
+.results b{font:800 24px var(--display);color:var(--cobalt);letter-spacing:-.02em}
+.why{display:grid;gap:18px;margin-top:16px}
+.why div{padding-left:14px;border-left:3px solid var(--sun)}
+.why p{margin:4px 0 0}
+
+/* Contact */
+.contact-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.contact-list li{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px}
+.contact-list .k{font-size:13px;color:var(--ink-soft);width:74px;flex:none}
+.contact-list a{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:500;text-decoration:none}
+.copy{border:1px solid var(--line);background:var(--win-bar);border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer}
+
+/* Terminal */
+.term .win-body{background:#0F1522;color:#D6E0F0;font:14px/1.6 var(--mono);padding:18px 20px}
+.term-out div{white-space:pre-wrap}
+.term-line{display:flex;gap:8px}
+.term-line span{color:var(--sun)}
+.term input{flex:1;min-width:0;background:none;border:0;color:inherit;font:inherit;outline:none;caret-color:var(--sun)}
+.t-accent{color:#9FB2FF}
+
+/* Dock */
+.dock{position:fixed;left:50%;transform:translateX(-50%);z-index:5000;bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;padding:8px;border-radius:18px;background:var(--dock);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:var(--shadow);max-width:calc(100vw - 16px)}
+.dock-btn{position:relative;width:50px;height:50px;border-radius:12px;border:0;background:none;display:grid;place-items:center;cursor:pointer;transition:transform .12s;flex:none}
+.dock-btn:hover{transform:translateY(-4px)}
+.dock-btn svg{width:36px;height:36px}
+.dock-btn.open::after{content:"";position:absolute;bottom:-3px;width:5px;height:5px;border-radius:50%;background:var(--ink)}
+.dock-sep{width:1px;background:var(--line);margin:6px 2px;flex:none}
+.tip{position:absolute;bottom:62px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--win);font-size:12px;padding:3px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s}
+.dock-btn:hover .tip,.dock-btn:focus-visible .tip{opacity:1}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--win);padding:8px 14px;border-radius:8px;font-size:14px;z-index:6000;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+
+/* Mobile */
+@media (max-width:780px){
+  .menu-btn,.clock{display:none}
+  .icons{position:static;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px;padding:18px 10px 0}
+  .icons.right{padding-top:0}
+  .d-icon{width:84px}
+  .win,.win.maxed{position:fixed;left:8px!important;right:8px;top:calc(48px + env(safe-area-inset-top,0px))!important;bottom:calc(88px + env(safe-area-inset-bottom,0px));width:auto!important;height:auto!important;max-height:none!important}
+  .win-bar{cursor:default}
+  .win-body{padding:22px 18px 26px}
+  .hero{padding:18px}
+  .dock{gap:2px;padding:6px}
+  .dock-btn{width:40px;height:40px}.dock-btn svg{width:30px;height:30px}
+  .dock-sep{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="menubar">
+  <div class="menubar-inner">
+    <button class="logo" data-open="home" aria-label="Open welcome window"><span class="logo-mark">EB</span>Elnaz OS</button>
+    <button class="menu-btn" data-open="projects">Projects</button>
+    <button class="menu-btn" data-open="cases">Case Studies</button>
+    <button class="menu-btn" data-open="resume">Resume</button>
+    <button class="menu-btn" data-open="certs">Certificates</button>
+    <button class="menu-btn" data-open="contact">Contact</button>
+    <span class="spacer"></span>
+    <span class="clock" id="clock" aria-hidden="true"></span>
+    <button class="icon-btn" id="themeBtn" aria-label="Switch light or dark theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="desktop" aria-label="Portfolio desktop">
+  <nav class="icons left" aria-label="Desktop shortcuts">
+    <button class="d-icon" data-open="projects"><span data-icon="folder"></span>Projects</button>
+    <button class="d-icon" data-open="cases"><span data-icon="folderCase"></span>Case Studies</button>
+    <button class="d-icon" data-open="resume"><span data-icon="doc"></span>Resume</button>
+    <button class="d-icon" data-open="terminal"><span data-icon="terminal"></span>terminal.app</button>
+  </nav>
+  <nav class="icons right" aria-label="More shortcuts">
+    <button class="d-icon" data-open="why"><span data-icon="spark"></span>Why Elnaz?</button>
+    <button class="d-icon" data-open="contact"><span data-icon="mail"></span>Say hello</button>
+  </nav>
+</main>
+
+<nav class="dock" id="dock" aria-label="Dock"></nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ====== Edit your details here ====== */
+const CONFIG = {
+  name: "Elnaz Babakhani",
+  email: "eli.bkhni@gmail.com",
+  phone: "+1 778 522 4148",
+  linkedin: "https://www.linkedin.com/in/elnaz-babakhani/",
+  github: "https://github.com/EliBabakhani",
+  resumeUrl: "resume.pdf" // put your PDF next to index.html in the repo
+};
+
+const PROJECTS = [
+  {
+    id: "smartsync", name: "SmartSync", file: "smartsync.case",
+    tagline: "AI assisted anomaly detection for SAP and Salesforce data reconciliation.",
+    status: "Demo project, synthetic data",
+    stack: ["SAP", "Salesforce", "Anomaly detection", "LLM explanations"],
+    link: "https://github.com/EliBabakhani/SmartSync", linkLabel: "View on GitHub",
+    sections: {
+      "Pain point": "When customers, orders and pricing live in both SAP and Salesforce, the two systems slowly drift apart. Teams usually find the mismatches late, during month end close or after a customer complains, and fixing them means exporting spreadsheets and comparing rows by hand.",
+      "Solution": "SmartSync compares records across both systems, flags the ones that disagree and ranks them by how likely they are to be a real problem. An AI layer explains each anomaly in plain language and suggests which system most likely holds the correct value, so an analyst reviews a short list instead of thousands of rows.",
+      "Market": "Mid sized manufacturers and distributors that run SAP as the system of record alongside Salesforce for sales. The daily users are integration teams, business systems analysts and revenue operations.",
+      "How I got here": "The idea comes from years of ERP and CRM integration work, where reconciliation kept showing up as the same slow, manual problem. I built this version on synthetic data to show how detection plus explanation can shorten the loop from noticing a mismatch to fixing it."
+    }
+  },
+  {
+    id: "kidappetite", name: "KidAppetite", file: "kidappetite.case",
+    tagline: "Easy access to healthy food that kids actually want to eat.",
+    status: "Launching",
+    stack: ["Marketplace", "Parents", "Food consultants"],
+    link: "https://github.com/EliBabakhani/KidAppetite", linkLabel: "View on GitHub",
+    sections: {
+      "Pain point": "Parents want their kids to eat well, but healthy options are often hard to find and rarely appealing to children. Food consultants who help families have few simple ways to reach them.",
+      "Solution": "KidAppetite brings healthy, kid friendly food and the consultants who know how to make it work into one place that busy families can use without friction.",
+      "Market": "Parents of young children, and food and nutrition consultants who want to reach and support those families.",
+      "How I got here": "KidAppetite is a real platform I am launching. Building it as a founder lets me use everything I do as a product manager, from discovery and requirements to roadmap and launch."
+    }
+  },
+  {
+    id: "psa", name: "ProductStrategyAgent", file: "strategy-agent.case",
+    tagline: "An AI product launch orchestrator built on Google's Agent Development Kit.",
+    status: "Open source",
+    stack: ["Google ADK", "Gemini", "OpenAI", "Google Cloud"],
+    link: "https://github.com/EliBabakhani/ProductStrategyAgent", linkLabel: "View on GitHub",
+    sections: {
+      "Pain point": "Planning a launch means pulling together research, positioning, pricing and a go to market plan, usually across many documents and people. It is slow, and gaps are easy to miss.",
+      "Solution": "ProductStrategyAgent coordinates a team of AI agents that each take on part of the launch plan, then combines their work into one clear strategy.",
+      "Market": "Product managers, founders and small product teams who need a solid launch plan quickly.",
+      "How I got here": "I built it to learn multi agent design hands on and to test how far agents can go on real product strategy work, using Gemini and OpenAI models on Google Cloud."
+    }
+  }
+];
+
+/* Add case studies here. Same shape as a project; "sections" can use any headings you like.
+   Example:
+   { id:"spotify-onboarding", name:"Why Spotify's onboarding works", file:"spotify.case",
+     tagline:"A teardown of the first five minutes.", status:"Teardown", stack:["Onboarding","Growth"],
+     link:"", linkLabel:"", sections:{ "The question":"...", "What I found":"...", "What I'd change":"..." } }
+*/
+const CASE_STUDIES = [];
+
+/* Add a credential link or image path to "url" when you have one */
+const CERTS = [
+  { name: "AWS Certified AI Practitioner", issuer: "Amazon Web Services", url: "" },
+  { name: "Google Project Management", issuer: "Google", url: "" },
+  { name: "Product Led Growth Micro Certification", issuer: "PLGC", url: "" },
+  { name: "PMP", issuer: "In progress", url: "" }
+];
+
+const EXPERIENCE = [
+  { role: "Business Data Analyst", org: "Rhyno Equity Group", when: "Nov 2025 to present", note: "Contract" },
+  { role: "Product Manager", org: "Parspendar Holdings Inc.", when: "May 2023 to Jan 2025", note: "" },
+  { role: "Associate Product Manager to Technical Product Manager", org: "Direction Service Inc.", when: "Oct 2018 to Mar 2023", note: "AI based startup. Scaled the SaaS product to 18 countries with 3x user growth." }
+];
+const EDUCATION = [
+  { role: "MBA", org: "Kaiserslautern University of Technology, Germany" },
+  { role: "BSc Computer Engineering", org: "Hamedan University of Technology, Iran" }
+];
+const SKILLS = ["Product strategy", "Roadmapping", "Requirements elicitation", "UAT", "SAP", "Microsoft Dynamics 365", "Salesforce integrations", "KPI and BI reporting", "AWS", "Azure", "CI/CD", "Scrum"];
+
+/* ====== Icons ====== */
+const folderSvg = (back, front, mark = "") => `<svg viewBox="0 0 48 48"><path d="M4 12a4 4 0 0 1 4-4h10l4 5h18a4 4 0 0 1 4 4v19a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="${back}"/><path d="M4 18h40v18a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="${front}"/>${mark}</svg>`;
+const ICONS = {
+  folder: folderSvg("#2B46C4", "#4F68E0"),
+  folderCase: folderSvg("#2B46C4", "#7C8FEA", `<circle cx="22" cy="28" r="5" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M26 32l5 5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>`),
+  folderCert: folderSvg("#D9A024", "#F3BE3E", `<circle cx="24" cy="28" r="6" fill="none" stroke="#3A2A00" stroke-width="2.2"/><path d="M21.5 28l2 2 3.5-4" stroke="#3A2A00" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`),
+  doc:`<svg viewBox="0 0 48 48"><path d="M11 4h18l10 10v28a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="#fff" stroke="#9AAAC0" stroke-width="1.5"/><path d="M29 4v10h10" fill="#E3E8FB" stroke="#9AAAC0" stroke-width="1.5"/><rect x="15" y="21" width="18" height="3" rx="1.5" fill="#2B46C4"/><rect x="15" y="28" width="16" height="2.5" rx="1.2" fill="#B9C4D6"/><rect x="15" y="34" width="12" height="2.5" rx="1.2" fill="#B9C4D6"/></svg>`,
+  terminal:`<svg viewBox="0 0 48 48"><rect x="4" y="8" width="40" height="32" rx="6" fill="#0F1522"/><path d="M12 19l6 5-6 5" stroke="#F3BE3E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="21" y="28" width="12" height="3" rx="1.5" fill="#9FB2FF"/></svg>`,
+  badge:`<svg viewBox="0 0 48 48"><path d="M17 28l-5 16 8-4 4 6 4-12M31 28l5 16-8-4" fill="#2B46C4"/><circle cx="24" cy="19" r="14" fill="#F3BE3E"/><circle cx="24" cy="19" r="9" fill="none" stroke="#3A2A00" stroke-width="2"/><path d="M20 19l3 3 5-6" stroke="#3A2A00" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  spark:`<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#E3E8FB"/><path d="M24 8l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" fill="#2B46C4"/><circle cx="36" cy="12" r="4" fill="#F3BE3E"/></svg>`,
+  mail:`<svg viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="5" fill="#F3BE3E"/><path d="M6 13l18 14 18-14" fill="none" stroke="#3A2A00" stroke-width="2.5" stroke-linejoin="round"/></svg>`,
+  home:`<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="11" fill="#2B46C4"/><text x="24" y="30" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="17" fill="#fff">EB</text></svg>`,
+  linkedin:`<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#0A66C2"/><rect x="13" y="20" width="5" height="15" fill="#fff"/><circle cx="15.5" cy="14.5" r="3" fill="#fff"/><path d="M22 20h5v2.2c1-1.6 2.7-2.6 5-2.6 4 0 5 2.6 5 6.4V35h-5v-8c0-2-.5-3.3-2.3-3.3S27 25.1 27 27v8h-5z" fill="#fff"/></svg>`,
+  github:`<svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="10" fill="#16202E"/><path d="M24 11a13 13 0 0 0-4.1 25.3c.6.1.9-.3.9-.6v-2.3c-3.6.8-4.4-1.6-4.4-1.6-.6-1.5-1.4-1.9-1.4-1.9-1.2-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.2 2 3.1 1.4 3.8 1.1.1-.8.5-1.4.8-1.7-2.9-.3-5.9-1.4-5.9-6.4 0-1.4.5-2.6 1.3-3.5-.1-.3-.6-1.7.1-3.5 0 0 1.1-.3 3.6 1.3a12.4 12.4 0 0 1 6.5 0c2.5-1.7 3.6-1.3 3.6-1.3.7 1.8.3 3.2.1 3.5.8.9 1.3 2.1 1.3 3.5 0 5-3 6.1-5.9 6.4.5.4.9 1.2.9 2.4v3.6c0 .3.2.7.9.6A13 13 0 0 0 24 11z" fill="#fff"/></svg>`
+};
+document.querySelectorAll("[data-icon]").forEach(el => el.outerHTML = ICONS[el.dataset.icon]);
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const dlIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>`;
+const backIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>`;
+
+/* ====== Folders (Projects, Case Studies) ====== */
+const FOLDERS = {
+  projects: { title: "~/projects", heading: "Projects", items: PROJECTS,
+    intro: "Things I've built. Open one to see the problem, the solution, who it's for and how I got there." },
+  cases: { title: "~/case-studies", heading: "Case Studies", items: CASE_STUDIES,
+    intro: "Products I've pulled apart to understand why they work, and what I would change.",
+    empty: "I'm writing my first case studies now. Check back soon, or open Projects to see what I've built." }
+};
+
+function folderList(key){
+  const f = FOLDERS[key];
+  const list = f.items.length
+    ? `<div class="files">${f.items.map(p => `
+        <button class="file" data-item="${key}:${p.id}">
+          <span class="ext">${esc(p.file)}</span>
+          <h3>${esc(p.name)}</h3>
+          <p>${esc(p.tagline)}</p>
+          <span class="open-hint">Read case study</span>
+        </button>`).join("")}</div>`
+    : `<div class="empty"><h3>New case studies on the way</h3><p class="muted">${esc(f.empty)}</p></div>`;
+  return `<div class="folder-head"><h2>${f.heading}</h2><p class="muted">${esc(f.intro)}</p></div>${list}`;
+}
+
+function folderDetail(key, id){
+  const f = FOLDERS[key], i = f.items.findIndex(p => p.id === id), p = f.items[i];
+  const prev = f.items[i - 1], next = f.items[i + 1];
+  return `
+    <nav class="crumbs" aria-label="Breadcrumb"><button class="back" data-back="${key}">${backIcon}${f.heading}</button><span class="sep">/</span><span>${esc(p.name)}</span></nav>
+    <div class="hero">
+      <div class="hero-top">
+        <div><span class="chip sun">${esc(p.status)}</span><h2 style="margin-top:12px">${esc(p.name)}</h2><p>${esc(p.tagline)}</p></div>
+        ${p.link ? `<a class="btn primary" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel || "Open")}</a>` : ""}
+      </div>
+      <div class="stack">${p.stack.map(s => `<span class="chip">${esc(s)}</span>`).join("")}</div>
+    </div>
+    <div class="story">${Object.entries(p.sections).map(([h, t]) => `<section><h3>${esc(h)}</h3><p>${esc(t)}</p></section>`).join("")}</div>
+    <div class="pager">
+      ${prev ? `<button class="btn" data-item="${key}:${prev.id}">Previous: ${esc(prev.name)}</button>` : "<span></span>"}
+      ${next ? `<button class="btn" data-item="${key}:${next.id}">Next: ${esc(next.name)}</button>` : ""}
+    </div>`;
+}
+
+/* ====== Window contents ====== */
+const WINDOWS = {
+  home: { title: "home.mdx", w: 620, render: () => `
+    <p class="hello">Hi there, I'm</p>
+    <h1>${esc(CONFIG.name)}</h1>
+    <p class="intro">I love figuring out how things really work: where the data goes, where people get stuck, and which small decision would make everything feel easier. I'm curious by default, a little obsessed with details, and happiest when a messy process turns into a product people enjoy using.</p>
+    <p class="intro">This space is where I share what I build, the products I take apart in case studies, and what I learn along the way.</p>
+    <div class="roles"><span class="chip sun">Open to roles in Vancouver</span><span class="chip">Product Manager</span><span class="chip">Product Operations</span><span class="chip">AI SaaS Builder</span></div>
+    <div class="actions">
+      <button class="btn primary" data-open="projects">See my projects</button>
+      <button class="btn" data-open="why">Why work with me</button>
+    </div>` },
+
+  projects: { title: FOLDERS.projects.title, w: 780, h: 620, folder: "projects", render: () => folderList("projects") },
+  cases: { title: FOLDERS.cases.title, w: 780, h: 620, folder: "cases", render: () => folderList("cases") },
+
+  certs: { title: "~/certificates", w: 640, render: () => `
+    <h2>Certificates</h2>
+    <p class="muted" style="margin:0">Learning never really stops. Here's what I've earned so far.</p>
+    <div class="files">${CERTS.map(c => `
+      <div class="file cert">${ICONS.badge}<h3>${esc(c.name)}</h3><p>${esc(c.issuer)}</p>
+        ${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">View credential</a>` : ""}</div>`).join("")}
+    </div>` },
+
+  resume: { title: "resume.pdf", w: 620, render: () => `
+    <div class="resume-top">
+      <div><h2>${esc(CONFIG.name)}</h2><p class="muted" style="margin:0">Technical Product Manager, AWS Certified AI Practitioner</p></div>
+      <a class="btn primary" href="${esc(CONFIG.resumeUrl)}" download>${dlIcon}Download resume</a>
+    </div>
+    <div class="section"><h3>Experience</h3>
+      <ul class="timeline">${EXPERIENCE.map(e => `
+        <li><div class="role">${esc(e.role)}</div><div>${esc(e.org)}</div><div class="when">${esc(e.when)}</div>${e.note ? `<p class="muted" style="margin:4px 0 0">${esc(e.note)}</p>` : ""}</li>`).join("")}
+      </ul></div>
+    <div class="section"><h3>Education</h3>
+      ${EDUCATION.map(e => `<p style="margin:0 0 8px"><span class="role">${esc(e.role)}</span><br><span class="muted">${esc(e.org)}</span></p>`).join("")}</div>
+    <div class="section"><h3>Skills</h3><div class="skills">${SKILLS.map(s => `<span class="chip">${esc(s)}</span>`).join("")}</div></div>
+    <div class="section actions"><button class="btn" data-open="certs">See my certificates</button></div>` },
+
+  why: { title: "why-elnaz.txt", w: 580, render: () => `
+    <h2>Why work with me</h2>
+    <div class="why">
+      <div><h3>I speak business and systems</h3><p>Years across ERP, PLM and SaaS integrations mean I can sit with operations in the morning and engineers in the afternoon, and translate both ways.</p></div>
+      <div><h3>I ship AI, not just talk about it</h3><p>From an AI SaaS product used in 18 countries to agent tools I build myself, I know what it takes to get AI into real workflows.</p></div>
+      <div><h3>I measure what matters</h3><p>If a feature doesn't move a number users care about, I rethink it.</p></div>
+    </div>
+    <h3 style="margin-top:28px">A few results I'm proud of</h3>
+    <ul class="results">
+      <li><b>18</b><span>countries reached by an AI SaaS platform, with 3x user growth</span></li>
+      <li><b>+40%</b><span>improvement in NPS</span></li>
+      <li><b>+25%</b><span>conversion lift from lead scoring</span></li>
+      <li><b>−50%</b><span>churn after launching personalized dashboards</span></li>
+    </ul>
+    <div class="actions" style="margin-top:24px"><button class="btn primary" data-open="contact">Get in touch</button></div>` },
+
+  contact: { title: "say-hello.app", w: 520, render: () => `
+    <h2>Let's talk</h2>
+    <p class="muted">Hiring for product, product ops or an AI role in Vancouver? I'd love to hear about it.</p>
+    <ul class="contact-list">
+      <li><span class="k">Email</span><a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a><button class="copy" data-copy="${esc(CONFIG.email)}">Copy</button></li>
+      <li><span class="k">Phone</span><a href="tel:${esc(CONFIG.phone.replace(/\s/g,""))}">${esc(CONFIG.phone)}</a><button class="copy" data-copy="${esc(CONFIG.phone)}">Copy</button></li>
+      <li><span class="k">LinkedIn</span><a href="${esc(CONFIG.linkedin)}" target="_blank" rel="noopener">elnaz-babakhani</a></li>
+      <li><span class="k">GitHub</span><a href="${esc(CONFIG.github)}" target="_blank" rel="noopener">EliBabakhani</a></li>
+    </ul>` },
+
+  terminal: { title: "terminal.app", w: 580, cls: "term", render: () => `
+    <div class="term-out" id="termOut"></div>
+    <label class="term-line"><span>elnaz@portfolio ~ %</span><input id="termIn" autocomplete="off" spellcheck="false" aria-label="Terminal command"></label>` }
+};
+
+/* ====== Window manager ====== */
+const desktop = document.getElementById("desktop");
+const open = new Map();
+let z = 10, cascade = 0;
+const isMobile = () => matchMedia("(max-width:780px)").matches;
+
+function openWindow(id){
+  const def = WINDOWS[id]; if (!def) return null;
+  if (open.has(id)){ const w = open.get(id); w.classList.remove("minimized"); focusWin(w); updateDock(); return w; }
+  const win = document.createElement("section");
+  win.className = "win" + (def.cls ? " " + def.cls : "");
+  win.setAttribute("role", "dialog"); win.setAttribute("aria-label", def.title);
+  win.innerHTML = `<div class="win-bar"><div class="lights"><button class="light close" aria-label="Close"></button><button class="light min" aria-label="Minimize"></button><button class="light max" aria-label="Maximize"></button></div><span class="win-title">${esc(def.title)}</span></div><div class="win-body">${def.render()}</div>`;
+
+  // Size and place so the whole window always fits inside the desktop
+  const dw = desktop.clientWidth, dh = desktop.clientHeight;
+  const w = Math.min(def.w, dw - 32);
+  const off = (cascade++ % 5) * 26;
+  const top = Math.min(16 + off, Math.max(8, dh * 0.08));
+  const avail = dh - top - 12;
+  win.style.width = w + "px";
+  win.style.maxHeight = avail + "px";
+  if (def.h) win.style.height = Math.min(def.h, avail) + "px";
+  win.style.left = Math.min(Math.max(16, (dw - w) / 2 + off), dw - w - 16) + "px";
+  win.style.top = top + "px";
+
+  desktop.appendChild(win); open.set(id, win); focusWin(win);
+  win.addEventListener("pointerdown", () => focusWin(win));
+  win.querySelector(".close").onclick = () => { win.remove(); open.delete(id); updateDock(); };
+  win.querySelector(".min").onclick = () => { win.classList.add("minimized"); updateDock(); };
+  win.querySelector(".max").onclick = () => win.classList.toggle("maxed");
+  win.querySelector(".win-bar").addEventListener("dblclick", () => win.classList.toggle("maxed"));
+  makeDraggable(win);
+  if (id === "terminal") initTerminal(win);
+  updateDock();
+  return win;
+}
+function focusWin(w){ w.style.zIndex = ++z; }
+
+function showItem(key, id){
+  const win = openWindow(key); if (!win) return;
+  const body = win.querySelector(".win-body");
+  body.innerHTML = id ? folderDetail(key, id) : folderList(key);
+  win.querySelector(".win-title").textContent = id ? `${FOLDERS[key].title}/${FOLDERS[key].items.find(p => p.id === id).file}` : FOLDERS[key].title;
+  body.scrollTop = 0;
+  body.querySelector(".back, .file")?.focus({ preventScroll: true });
+}
+
+function makeDraggable(win){
+  const bar = win.querySelector(".win-bar");
+  bar.addEventListener("pointerdown", e => {
+    if (e.target.closest("button") || isMobile() || win.classList.contains("maxed")) return;
+    const sx = e.clientX, sy = e.clientY, ox = win.offsetLeft, oy = win.offsetTop;
+    bar.setPointerCapture(e.pointerId);
+    const move = ev => {
+      const maxX = desktop.clientWidth - 80, maxY = desktop.clientHeight - 38;
+      win.style.left = Math.min(maxX, Math.max(-win.offsetWidth + 80, ox + ev.clientX - sx)) + "px";
+      win.style.top = Math.min(maxY, Math.max(0, oy + ev.clientY - sy)) + "px";
+    };
+    const up = () => { bar.removeEventListener("pointermove", move); bar.removeEventListener("pointerup", up); };
+    bar.addEventListener("pointermove", move); bar.addEventListener("pointerup", up);
+  });
+}
+
+/* Global clicks */
+document.addEventListener("click", e => {
+  const it = e.target.closest("[data-item]");
+  if (it){ const [k, id] = it.dataset.item.split(":"); showItem(k, id); return; }
+  const b = e.target.closest("[data-back]");
+  if (b){ showItem(b.dataset.back, null); return; }
+  const o = e.target.closest("[data-open]");
+  if (o){ openWindow(o.dataset.open); return; }
+  const c = e.target.closest("[data-copy]");
+  if (c){
+    try { navigator.clipboard.writeText(c.dataset.copy).then(() => toast("Copied " + c.dataset.copy), () => toast("Select the text to copy it")); }
+    catch { toast("Select the text to copy it"); }
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  const top = [...open.values()].filter(w => !w.classList.contains("minimized")).sort((a,b) => b.style.zIndex - a.style.zIndex)[0];
+  if (top) top.querySelector(".close").click();
+});
+
+/* Dock */
+const DOCK = [["home","Welcome","home"],["projects","Projects","folder"],["cases","Case Studies","folderCase"],["certs","Certificates","folderCert"],["resume","Resume","doc"],["terminal","Terminal","terminal"],["contact","Contact","mail"]];
+const dock = document.getElementById("dock");
+dock.innerHTML = DOCK.map(([id,label,ic]) => `<button class="dock-btn" data-open="${id}" aria-label="${label}">${ICONS[ic]}<span class="tip">${label}</span></button>`).join("")
+  + `<span class="dock-sep"></span>`
+  + `<a class="dock-btn" href="${CONFIG.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${ICONS.linkedin}<span class="tip">LinkedIn</span></a>`
+  + `<a class="dock-btn" href="${CONFIG.github}" target="_blank" rel="noopener" aria-label="GitHub">${ICONS.github}<span class="tip">GitHub</span></a>`;
+function updateDock(){ dock.querySelectorAll("[data-open]").forEach(b => b.classList.toggle("open", open.has(b.dataset.open))); }
+
+/* Terminal */
+function initTerminal(win){
+  const out = win.querySelector("#termOut"), input = win.querySelector("#termIn");
+  const print = html => { const d = document.createElement("div"); d.innerHTML = html; out.appendChild(d); win.querySelector(".win-body").scrollTop = 1e6; };
+  print(`Welcome to Elnaz OS. Type <span class="t-accent">help</span> to see what you can do.`);
+  const all = [...PROJECTS.map(p => ["projects", p]), ...CASE_STUDIES.map(p => ["cases", p])];
+  const cmds = {
+    help: () => `Commands:\n  <span class="t-accent">whoami</span>     a quick intro\n  <span class="t-accent">projects</span>   list my projects\n  <span class="t-accent">cases</span>      list my case studies\n  <span class="t-accent">open</span> NAME  open one, e.g. open smartsync\n  <span class="t-accent">certs</span>      my certificates\n  <span class="t-accent">resume</span>     open my resume\n  <span class="t-accent">contact</span>    ways to reach me\n  <span class="t-accent">theme</span>      switch light or dark\n  <span class="t-accent">clear</span>      clear the screen`,
+    whoami: () => `${esc(CONFIG.name)}\nTechnical Product Manager in Vancouver. Curious by default, happiest turning messy processes into products people enjoy.`,
+    projects: () => PROJECTS.map(p => `  <span class="t-accent">${p.id.padEnd(12)}</span>${esc(p.tagline)}`).join("\n"),
+    cases: () => CASE_STUDIES.length ? CASE_STUDIES.map(p => `  <span class="t-accent">${p.id.padEnd(12)}</span>${esc(p.tagline)}`).join("\n") : "First case studies are on the way.",
+    certs: () => { openWindow("certs"); return CERTS.map(c => "  " + esc(c.name)).join("\n"); },
+    resume: () => { openWindow("resume"); return "Opening resume.pdf"; },
+    contact: () => { openWindow("contact"); return `${esc(CONFIG.email)}\n${esc(CONFIG.phone)}`; },
+    theme: () => { toggleTheme(); return "Theme switched."; },
+    clear: () => { out.innerHTML = ""; return null; }
+  };
+  input.addEventListener("keydown", e => {
+    if (e.key !== "Enter") return;
+    const raw = input.value.trim(); input.value = "";
+    if (!raw) return;
+    print(`<span style="color:var(--sun)">elnaz@portfolio ~ %</span> ${esc(raw)}`);
+    const [cmd, ...rest] = raw.toLowerCase().split(/\s+/);
+    if (cmd === "open"){
+      const q = rest.join(" "); const hit = q && all.find(([, p]) => p.id.startsWith(q) || p.name.toLowerCase().startsWith(q));
+      if (hit){ showItem(hit[0], hit[1].id); print(`Opening ${esc(hit[1].file)}`); }
+      else print(`Nothing called "${esc(q)}". Type projects to see the list.`);
+      return;
+    }
+    const r = cmds[cmd] ? cmds[cmd]() : `Command not found: ${esc(cmd)}. Type help for the list.`;
+    if (r !== null) print(r);
+  });
+  win.addEventListener("click", () => input.focus());
+  setTimeout(() => input.focus(), 50);
+}
+
+/* Theme */
+function toggleTheme(){
+  const root = document.documentElement;
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("eb-theme", root.dataset.theme); } catch {}
+}
+try { const t = localStorage.getItem("eb-theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+document.getElementById("themeBtn").onclick = toggleTheme;
+
+/* Clock and toast */
+const clock = document.getElementById("clock");
+const tick = () => clock.textContent = new Date().toLocaleString("en-CA", { weekday:"short", hour:"numeric", minute:"2-digit" });
+tick(); setInterval(tick, 30000);
+let tt; function toast(msg){ const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 1800); }
+
+/* Start: welcome window, or a deep link like #resume, #certs, #projects/smartsync */
+(() => {
+  const [a, b] = decodeURIComponent(location.hash.slice(1)).split("/");
+  if (FOLDERS[a] && b && FOLDERS[a].items.some(p => p.id === b)) showItem(a, b);
+  else openWindow(WINDOWS[a] ? a : "home");
+})();
+</script>
+</body>
+</html>
